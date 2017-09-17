@@ -1,0 +1,64 @@
+﻿@model PersonInfo.Model.PersonInfoModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="col-lg-12 col-md-9 instructions">
+        <h4>Instructions</h4>
+        <p>
+            Enter the personal details
+        </p>
+        <p>
+            Example :
+            <ul>
+                <li>John Smith</li>
+                <li>123.45</li>
+            </ul>
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-6">
+        <form id="personalDetailsInput" method="post" onsubmit="return validateInput();">
+            <div class="roundcorner">
+                <p>INPUT</p>
+                @Html.TextArea("personalDetails", new { rows = 5, columns = 20 })
+                <div>
+                    <input type="submit" value="Execute" id="btnExecute" class="form-submit-button" />
+                    <br />
+                    <p>
+                        <span id="errorMessage" class="errorMessage">
+                    </p>
+                </div>
+
+                @*<div>
+                        <button name="Execute" class="btn-primary" id="btnExecute" data-submiturl="/Home/_personalDetailsOutput">Execute</button>
+                    </div>*@
+                <span id="errorMessage" class="has-error">
+                    @*@if (Model != null && !String.IsNullOrEmpty(Model.ErrorMessage))
+                        {
+                            @Model.ErrorMessage
+                        }*@
+                </span>
+            </div>
+            <div id="personalDetailsoutput" class="roundcorner">
+                <p>OUTPUT</p>
+                @if (Model != null)
+                {
+                    if (!string.IsNullOrEmpty(Model.Message))
+                    {
+                        <p>@Model.Message</p>
+                    }
+                    else
+                    {
+                        <p>@Model.Name</p>
+                        <br />
+                        <p>@Model.NumberString</p>
+                    }
+
+                }
+
+            </div>
+        </form>
+    </div>
+</div>
